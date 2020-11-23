@@ -45,7 +45,7 @@ class ShortCode
      * @return string|string[]|null
      */
     function doShortCode($string, $context = 'default'){
-        return preg_replace_callback('#\[(.*?)\]#', function ($matches) {
+        return preg_replace_callback('#\[(.*?)\]#', function ($matches) use($context) {
             $whitespace_explode = explode(" ", $matches[1]);
             $fnName = array_shift($whitespace_explode);
             if(isset($this->shortCodeManifest[$fnName])){
@@ -68,8 +68,6 @@ class ShortCode
                 }
 
                 if(is_callable($shortCode->callback)){
-                    // TODO find a way to pass $context from doShortCode()
-                    $context = 'default';
                     return call_user_func($shortCode->callback, $context, $attributes);
                 }
             }

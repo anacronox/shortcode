@@ -42,6 +42,7 @@ class ShortCode
      *
      * @param $string
      * @param string $context the context of execution of shortcode, usefull to display diferent king of output according to context
+     * exemple of context : "html:adminpanel", "html:frontpanel", "nohtml:youradditionalcontext" ...
      * @return string|string[]|null
      */
     function doShortCode($string, $context = 'default'){
